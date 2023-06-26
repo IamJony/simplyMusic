@@ -1,84 +1,61 @@
- body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-    
-
-    .search-container {
-      background-color: #f2f2f2;
-      padding: 20px;
-      position: sticky;
-      top: 0;
-    }
-
-    .search-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .search-input {
-      padding: 8px;
-      font-size: 16px;
-      border: none;
-      border-radius: 4px;
-      margin-right: 10px;
-      width: 300px;
-    }
-
-    .search-button {
-      padding: 8px 16px;
-      font-size: 16px;
-      border: none;
-      border-radius: 4px;
-      background-color: #4CAF50;
-      color: white;
-      cursor: pointer;
-    }
-    
-  
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    th, td {
-      padding: 10px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-
-    th {
-      background-color: #4CAF50;
-      color: white;
-    }
-
-
+/* Estilos comunes para todas las pantallas */
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
 
 .search-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
+  background-color: #f2f2f2;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+}
 
-    .search-input {
-      width: 300px;
-      padding: 10px;
-      border: none;
-      border-radius: 4px;
-      background-color: #333;
-      color: #fff;
-    }
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .search-input:focus {
-      outline: none;
-    }
-  
-  .player-container {
+.search-input {
+  padding: 8px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 10px;
+  width: 100%;
+}
+
+.search-button {
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.player-container {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -87,76 +64,76 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px;
   background-color: #f5f5f5;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.player-controls {
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
 
-    .player-controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
+.play-btn,
+.pause-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
 
-    .play-btn,
-    .pause-btn {
-      background-color: transparent;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
+.play-btn:hover,
+.pause-btn:hover {
+  color: #1db954;
+}
 
-    .play-btn:hover,
-    .pause-btn:hover {
-      color: #1db954;
-    }
+.progress-bar {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  margin-top: 8px;
+  background-color: #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-    .progress-bar {
-      position: relative;
-      width: 300px;
-      height: 8px;
-      background-color: #ccc;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+.progress-bar:hover .progress,
+.progress-bar:hover .progress-circle {
+  background-color: #1db954;
+}
 
-    .progress-bar:hover .progress,
-    .progress-bar:hover .progress-circle {
-      background-color: #1db954;
-    }
+.progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: #1db954;
+  border-radius: 4px;
+  transition: width 0.3s;
+}
 
-    .progress {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 0%;
-      background-color: #1db954;
-      border-radius: 4px;
-      transition: width 0.3s;
-    }
+.buffer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: #878787;
+  border-radius: 4px;
+}
 
-    .buffer {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 0%;
-      background-color: #878787;
-      border-radius: 4px;
-    }
-    
-     .play-button {
-    background-color: transparent;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      transition: color 0.3s;
-      
+.play-button {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
 #loader {
   position: fixed;
   top: 0;
@@ -167,7 +144,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
 }
 
 .spinner {
@@ -187,4 +163,23 @@
     transform: rotate(360deg);
   }
 }
-   
+
+/* Estilos para pantallas mayores a 500px */
+@media (min-width: 501px) {
+  body {
+    /* Estilos adicionales para pantallas mayores a 500px */
+  }
+
+  .search-input {
+    /* Estilos adicionales para pantallas mayores a 500px */
+    width: 460px;
+  }
+
+  .progress-bar {
+    /* Estilos adicionales para pantallas mayores a 500px */
+    width: 360px;
+  }
+
+  /* Agrega más estilos para pantallas mayores a 500px aquí */
+}
+
