@@ -7,15 +7,13 @@
 </head>
 <body>
 
-<div id="loader">
-  <div class="spinner"></div>
-</div>
+
   <div class="search-container">
     <input type="text" class="search-input" placeholder="Buscar...">
     <button type="submit" class="search-button">Buscar</button>
   </div>
+ 
   
-
   <table>
     <thead>
       <tr>
@@ -26,7 +24,10 @@
     </thead>
     <tbody id="app"></tbody>
   </table>
+  
+  
 
+    
    <audio id="myAudio"></audio>
   
   <div class="player-container">
@@ -34,18 +35,28 @@
   
 
     <div class="player-controls">
+ 
       <button id="playBtn" class="play-btn"><i class="fas fa-play"></i></button>
       <button id="pauseBtn" class="pause-btn"><i class="fas fa-pause"></i></button>
-    </div>
+      </div>
+<div>     
+      <span id="currentTime">00:00</span>
+  <span id="totalTime">00:00</span> 
+  
+</div>
+
+
     <div id="progressBar" class="progress-bar">
-      <div id="buffer" class="buffer"></div>
-      <div id="progress" class="progress"></div>
-      <div id="progressCircle" class="progress-circle"></div>
-     
+  
+  <div id="buffer" class="buffer"></div>
+  <div id="progress" class="progress"></div>
+  <div id="progressCircle" class="progress-circle"></div>
+
+</div>
+
+ 
    
   <script src="play.js"></script>
-  <script>
-    // Aquí puedes agregar tu código JavaScript adicional
-  </script>
+ 
 </body>
 </html>
