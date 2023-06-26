@@ -1,23 +1,27 @@
 const userListElement = document.getElementById('app');
 const searchInput = document.querySelector('.search-input');
 const searchButton = document.querySelector('.search-button');
-const loader = document.getElementById('loader');
 
 
-function mostrarPantallaCarga() {
-  loader.style.display = "block";
-}
 
-function ocultarPantallaCarga() {
-  loader.style.display = "none";
-}
+
 
 function searchAPI() {
   const searchTerm = searchInput.value;
   const apiUrl = `https://pipedapi.kavin.rocks/search?q=${searchTerm}&filter=music_songs`;
 
+function convertSecondsToMinutes(seconds) {
+  var minutes = Math.floor(seconds / 60); // Obtener la cantidad de minutos enteros
+  var remainingSeconds = seconds % 60; // Obtener los segundos restantes
+
+  // Formatear el resultado en el formato MM:SS
+  var formattedTime = minutes.toString().padStart(2, '0') + ':' + remainingSeconds.toString().padStart(2, '0');
+  
+  return formattedTime;
+} 
+ 
   // Mostrar pantalla de carga
-  mostrarPantallaCarga();
+  
 
   fetch(apiUrl)
     .then(response => response.json())
@@ -29,7 +33,7 @@ function searchAPI() {
           <tr>
             <td>${item.title}</td>
             <td>${item.uploaderName}</td>
-            <td>${item.duration}</td>
+            <td>${convertSecondsToMinutes(item.duration)}</td>
             <td><button class="play-button" onclick="playAudio('${videoId}')"><i class="fas fa-play"></i></button></td>
           </tr>
         `;
@@ -37,7 +41,7 @@ function searchAPI() {
       userListElement.innerHTML = tableRows;
 
     
-      ocultarPantallaCarga();
+      
     })
     .catch(error => {
       console.log('Error:', error);
@@ -80,12 +84,33 @@ function playAudio(videoId) {
       var progress = document.getElementById("progress");
       var progressCircle = document.getElementById("progressCircle");
       var buffer = document.getElementById("buffer");
-
+		var currentTimeSpan = document.getElementById("currentTime");
+		var totalTimeSpan = document.getElementById("totalTime");
+      
       playBtn.addEventListener("click", playAudio);
       pauseBtn.addEventListener("click", pauseAudio);
       progressBar.addEventListener("click", seekAudio);
       audio.addEventListener("timeupdate", updateProgressBar);
       audio.addEventListener("progress", updateBuffer);
+
+audio.addEventListener("timeupdate", function() {
+  var currentTime = formatTime(audio.currentTime);
+  var totalTime = audio.duration ? formatTime(audio.duration) : "00:00";
+  
+  currentTimeSpan.textContent = currentTime;
+  totalTimeSpan.textContent = totalTime;
+});
+
+function formatTime(time) {
+  var minutes = Math.floor(time / 60);
+  var seconds = Math.floor(time % 60);
+  
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+  
+  return minutes + ":" + seconds;
+}
+
 
       function playAudio() {
         audio.play();
