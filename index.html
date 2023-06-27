@@ -9,17 +9,22 @@
 
 
   <div class="search-container">
-    <input type="text" class="search-input" placeholder="Buscar...">
+    <input type="text" class="search-input" placeholder="Buscar cancion...">
     <button type="submit" class="search-button">Buscar</button>
+	<select id="searchFilters">
+		<option>song</option>
+		<option>albums</option>
+	<option>playlist</option>
+	</select>
   </div>
  
   
   <table>
     <thead>
       <tr>
-        <th>Título</th>
-        <th>Autor</th>
-        <th>Duración</th>
+        <th id="th1">Título</th>
+        <th id="th2">Autor</th>
+        <th id="th3">Duración</th>
       </tr>
     </thead>
     <tbody id="app"></tbody>
