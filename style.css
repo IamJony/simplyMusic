@@ -1,9 +1,15 @@
 /* Estilos comunes para todas las pantallas */
+* {
+ font-family: Arial, sans-serif;
+    font-size: 102%;
+}
+
 body {
   width: 100%;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+
+
 }
 
 .search-container {
@@ -20,8 +26,8 @@ body {
 }
 
 .search-input {
-  padding: 8px;
-  font-size: 16px;
+  padding: 1%;
+  font-size: 110%;
   border: none;
   border-radius: 4px;
   margin-right: 10px;
@@ -30,7 +36,7 @@ body {
 
 .search-button {
   padding: 8px 16px;
-  font-size: 16px;
+  font-size: 110%;
   border: none;
   border-radius: 4px;
   background-color: #4CAF50;
@@ -143,8 +149,6 @@ th {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
-}
 
 .spinner {
   width: 40px;
@@ -165,21 +169,47 @@ th {
 }
 
 /* Estilos para pantallas mayores a 500px */
-@media (min-width: 501px) {
+@media (min-width: 500px) {
+* {
+ font-family: Arial, sans-serif;
+    font-size: 1px;
+}  
   body {
-    /* Estilos adicionales para pantallas mayores a 500px */
+   width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+    font-size: 32px;
   }
 
-  .search-input {
-    /* Estilos adicionales para pantallas mayores a 500px */
-    width: 460px;
-  }
-
-  .progress-bar {
+.progress-bar {
     /* Estilos adicionales para pantallas mayores a 500px */
     width: 360px;
   }
-
-  /* Agrega más estilos para pantallas mayores a 500px aquí */
+.search-input {
+  padding: 0px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 10px;
+  width: 60px;
 }
+
+.search-button {
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+.search-container {
+  background-color: #f2f2f2;
+  padding: 0px;
+  position: sticky;
+  top: 0;
+}
+  /* Agrega más estilos para pantallas mayores a 500px aquí */
+
 
