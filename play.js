@@ -3,12 +3,36 @@ const searchInput = document.querySelector('.search-input');
 const searchButton = document.querySelector('.search-button');
 
 
+function busqueda() {
+	 const searchFilters = document.getElementById('searchFilters');
+	const selectedOption = searchFilters.value;
 
+
+	switch (selectedOption) {
+    case 'song':
+      searchAPI()
+      break;
+    case 'albums':
+	searchAlbums()
+      break;
+    case 'playlist':
+      searchPlaylist2();
+      break;
+    default:
+      // Opción por defecto si no se selecciona nada
+      url = 'https://ejemplo.com/buscar';
+      break;
+  }
+
+	
+}
 
 
 function searchAPI() {
+	var elemento = document.getElementById("th3");
+elemento.innerHTML = "Duracion";
   const searchTerm = searchInput.value;
-  const apiUrl = `https://pipedapi.kavin.rocks/search?q=${searchTerm}&filter=music_songs`;
+  let apiUrl = `https://pipedapi.kavin.rocks/search?q=${searchTerm}&filter=music_songs`;
 
 function convertSecondsToMinutes(seconds) {
   var minutes = Math.floor(seconds / 60); // Obtener la cantidad de minutos enteros
@@ -50,10 +74,124 @@ function convertSecondsToMinutes(seconds) {
     });
 }
 
+
+
 function handleSearch(event) {
   if (event.key === 'Enter') {
-    searchAPI();
+    busqueda();
   }
+}
+
+
+function searchAlbums() {
+  const searchTerm = searchInput.value;
+  let apiUrl = `https://pipedapi.kavin.rocks/search?q=${searchTerm}&filter=music_albums`;
+
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      const tableRows = data.items.map(item => {
+        const urlParts = item.url.split('=');
+        const videoId = urlParts[urlParts.length - 1];
+        return `
+          <tr>
+            <td>${item.name}</td>
+            <td>${item.uploaderName}</td>
+			<td><button class="go" onclick="searchPlaylist('${videoId}')">Ver</button></td>
+          </tr>
+        `;
+      }).join('');
+      userListElement.innerHTML = tableRows;
+
+    
+      
+    })
+    .catch(error => {
+      console.log('Error:', error);
+      // Ocultar pantalla de carga en caso de error
+      ocultarPantallaCarga();
+    });
+}
+
+
+function searchPlaylist(videoId) {
+	var elemento = document.getElementById("th3");
+elemento.innerHTML = "Duracion";
+  const searchTerm = searchInput.value;
+  let apiUrl = `https://pipedapi.kavin.rocks/playlists/${videoId}`;
+
+function convertSecondsToMinutes(seconds) {
+  var minutes = Math.floor(seconds / 60); // Obtener la cantidad de minutos enteros
+  var remainingSeconds = seconds % 60; // Obtener los segundos restantes
+
+  // Formatear el resultado en el formato MM:SS
+  var formattedTime = minutes.toString().padStart(2, '0') + ':' + remainingSeconds.toString().padStart(2, '0');
+  
+  return formattedTime;
+} 
+ 
+  // Mostrar pantalla de carga
+  
+
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      const tableRows = data.relatedStreams.map(item => {
+        const urlParts = item.url.split('=');
+        const videoId = urlParts[urlParts.length - 1];
+        return `
+          <tr>
+            <td>${item.title}</td>
+            <td>${item.uploaderName}</td>
+            <td>${convertSecondsToMinutes(item.duration)}</td>
+            <td><button class="play-button" onclick="playAudio('${videoId}')"><i class="fas fa-play"></i></button></td>
+          </tr>
+        `;
+      }).join('');
+      userListElement.innerHTML = tableRows;
+
+    
+      
+    })
+    .catch(error => {
+      console.log('Error:', error);
+      // Ocultar pantalla de carga en caso de error
+    
+    });
+}
+
+
+function searchPlaylist2() {
+var elemento = document.getElementById("th3");
+elemento.innerHTML = "Contenido"; 
+  const searchTerm = searchInput.value;
+  let apiUrl = `https://pipedapi.kavin.rocks/search?q=${searchTerm}&filter=music_playlists`;
+
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      const tableRows = data.items.map(item => {
+        const urlParts = item.url.split('=');
+        const videoId = urlParts[urlParts.length - 1];
+        return `
+          <tr>
+            <td>${item.name}</td>
+            <td>${item.uploaderName}</td>
+            <td>${item.videos}</td>
+			<td><button class="go" onclick="searchPlaylist('${videoId}')">Ver</button></td>
+          </tr>
+        `;
+      }).join('');
+      userListElement.innerHTML = tableRows;
+
+    
+      
+    })
+    .catch(error => {
+      console.log('Error:', error);
+      // Ocultar pantalla de carga en caso de error
+      ocultarPantallaCarga();
+    });
 }
 
 function playAudio(videoId) {
@@ -154,6 +292,6 @@ function formatTime(time) {
 
 
     
-searchButton.addEventListener('click', searchAPI);
+searchButton.addEventListener('click', busqueda);
 searchInput.addEventListener('keydown', handleSearch);
 
