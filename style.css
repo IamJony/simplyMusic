@@ -1,15 +1,13 @@
 /* Estilos comunes para todas las pantallas */
 * {
- font-family: Arial, sans-serif;
-    font-size: 102%;
+  font-family: Arial, sans-serif;
+  font-size: 102%;
 }
 
 body {
   width: 100%;
   margin: 0;
   padding: 0;
-
-
 }
 
 .search-container {
@@ -98,12 +96,53 @@ th {
 
 .progress-bar {
   position: relative;
-  width: 100%;
+  width: 35%;
   height: 8px;
   margin-top: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
   background-color: #ccc;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.progress-bar .currentTime {
+  position: absolute;
+  font-size: 17px;
+  top: -9px;
+  height: 20px;
+  left: -60px;
+  margin-left: 6px;
+  right: auto;
+  text-align: center;
+}
+
+.progress-bar .totalTime {
+  position: absolute;
+  font-size: 17px;
+  top: -9px;
+  height: 20px;
+  left: auto;
+  right: -60px;
+  margin-right: 6px;
+  text-align: center;
+}
+
+.progress-bar .nameSong {
+  position: absolute;
+  left: -90%;
+  top: -14px;
+  display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.progress-bar .songContainer {
+  padding: 1px;
+  width: 250px;
+  overflow: hidden;
 }
 
 .progress-bar:hover .progress,
@@ -140,6 +179,11 @@ th {
   transition: color 0.3s;
 }
 
+.currentTime {
+  padding: 1px;
+  margin-right: 2px;
+}
+
 #loader {
   position: fixed;
   top: 0;
@@ -149,6 +193,7 @@ th {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
+}
 
 .spinner {
   width: 40px;
@@ -168,48 +213,22 @@ th {
   }
 }
 
-/* Estilos para pantallas mayores a 500px */
-@media (min-width: 500px) {
-* {
- font-family: Arial, sans-serif;
-    font-size: 1px;
-}  
-  body {
-   width: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-    font-size: 32px;
+@media screen and (max-width: 1198px) {
+  .progress-bar .nameSong {
+    position: absolute;
+    left: -90%;
+    top: -14px;
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-.progress-bar {
-    /* Estilos adicionales para pantallas mayores a 500px */
-    width: 360px;
+  .progress-bar .songContainer {
+    padding: 1px;
+    width: 14px;
+    overflow: hidden;
+    display: none;
   }
-.search-input {
-  padding: 0px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  margin-right: 10px;
-  width: 60px;
 }
-
-.search-button {
-  padding: 8px 16px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-}
-.search-container {
-  background-color: #f2f2f2;
-  padding: 0px;
-  position: sticky;
-  top: 0;
-}
-  /* Agrega más estilos para pantallas mayores a 500px aquí */
-
-
