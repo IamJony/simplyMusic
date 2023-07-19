@@ -28,6 +28,11 @@ function busqueda() {
 
 // FUNCION PARA BUSCAR POR CANCIONES EN LA API POR DEFAULT &FILTER=MUSIC_SONG 
 function searchAPI() {
+
+var th1 = document.getElementById("th1")
+var th2 = document.getElementById("th2")
+th1.innerHTML = "Nombre"	
+th2.innerHTML = "Autor"	
 	var elemento = document.getElementById("th3");
 elemento.innerHTML = "Duracion";
   const searchTerm = searchInput.value;
@@ -103,13 +108,16 @@ function searchSong(apiUrl) {
         const urlParts = item.url.split('=');
         const videoId = urlParts[urlParts.length - 1];
         return `
-          <tr>
+        
+          <tr class="trList" onmouseover="this.style.backgroundColor='#f0f0f0';" onmouseout="this.style.backgroundColor='#ffffff';" onclick="playAudio('${videoId}'); document.getElementById('nameSong').innerHTML = '${item.title}'; document.getElementById('artistSong').innerHTML = '${item.uploaderName}'">
             <td>${item.title}</td>
             <td>${item.uploaderName}</td>
             <td>${convertSecondsToMinutes(item.duration)}</td>
-            <td><button class="play-button" onclick="playAudio('${videoId}'); document.getElementById('nameSong').innerHTML = '${item.title}'"><i class="fas fa-play"></i></button></td>
           </tr>
         `;
+        
+   
+        
       }).join('');
       userListElement.innerHTML = tableRows;
     })
@@ -192,11 +200,10 @@ function searchAlbums2(apiUrl) {
         const urlParts = item.url.split('=');
         const videoId = urlParts[urlParts.length - 1];
         return `
-          <tr>
+          <tr class="trList" onmouseover="this.style.backgroundColor='#f0f0f0';" onmouseout="this.style.backgroundColor='#ffffff';" onclick="searchPlaylist('${videoId}')">
             <td>${item.name}</td>
             <td>${item.uploaderName}</td>			
-			<td><button class="go" onclick="searchPlaylist('${videoId}')">Ver</button></td>
-          </tr>
+			</tr>
         `;
       }).join('');
       userListElement.innerHTML = tableRows;
@@ -284,11 +291,10 @@ function searchPlayli(apiUrl) {
         return `
        
        
-          <tr>
+          <tr class="trList" onmouseover="this.style.backgroundColor='#f0f0f0';" onmouseout="this.style.backgroundColor='#ffffff';" onclick="playAudio('${videoId}'); document.getElementById('nameSong').innerHTML = '${item.title}'">
             <td>${item.title}</td>
             <td>${item.uploaderName}</td>
             <td>${convertSecondsToMinutes(item.duration)}</td>
-            <td><button class="play-button" onclick="playAudio('${videoId}'); document.getElementById('nameSong').innerHTML = '${item.title}'"><i class="fas fa-play"></i></button></td>
           </tr>
         `;
       }).join('');
@@ -361,6 +367,11 @@ checkApiStatus(apiUrl);
 }
 
 function searchPlayli2(apiUrl) {  
+var th1 = document.getElementById("th1")
+var th2 = document.getElementById("th2")
+th1.innerHTML = "Nombre"	
+th2.innerHTML = "Autor"	
+
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
@@ -368,11 +379,10 @@ function searchPlayli2(apiUrl) {
         const urlParts = item.url.split('=');
         const videoId = urlParts[urlParts.length - 1];
         return `
-          <tr>
+          <tr class="trList" onclick="searchPlaylist('${videoId}')" onmouseover="this.style.backgroundColor='#f0f0f0';" onmouseout="this.style.backgroundColor='#ffffff';">
             <td>${item.name}</td>
             <td>${item.uploaderName}</td>
-            <td>${item.videos}</td>
-			<td><button class="go" onclick="searchPlaylist('${videoId}')">Ver</button></td>
+            <td>${item.videos}</td>			
           </tr>
         `;
       }).join('');
@@ -403,7 +413,8 @@ function playAudio(videoId) {
 
         console.log(audioStream);
         console.log(thumbnailUrl);
-
+       var cover = document.getElementById("cover")
+       cover.src = thumbnailUrl
         // Lógica adicional para reproducir el audio utilizando los datos de audioStream
 
         var audio = document.getElementById("myAudio");
