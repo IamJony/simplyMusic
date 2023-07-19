@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+
   <title>Simply Music</title>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+/* Estilos comunes para todas las pantallas */
+@import url(//db.onlinewebfonts.com/c/860c3ec7bbc5da3e97233ccecafe512e?family=Circular+Std+Book);
+
+
+  </style>
 </head>
 <body>
 
 
+
   <div class="search-container">
     <input type="text" class="search-input" placeholder="Buscar canción...">
-    <button type="submit" class="search-button">Buscar</button>
-    <select id="searchFilters">
+    <button type="submit" class="search-button"><i class="fas fa-search search-icon"></i></button>
+    <select id="searchFilters" class="search-filters">
       <option>song</option>
       <option>albums</option>
       <option>playlist</option>
     </select>
   </div>
- 
   
-  <table>
+<table>
     <thead>
       <tr>
-        <th id="th1">Título</th>
-        <th id="th2">Autor</th>
-        <th id="th3">Duración</th>
+        <th id="th1"></th>
+        <th id="th2"></th>
+        <th id="th3"></th>
       </tr>
     </thead>
     <tbody id="app"></tbody>
@@ -43,23 +51,24 @@
       <button id="pauseBtn" class="pause-btn"><i class="fas fa-pause"></i></button>
     </div>
     <div id="progressBar" class="progress-bar">
+    <span id="currentTime" class="currentTime">00:00</span>
       <div id="buffer" class="buffer"></div>
-      <div id="progress" class="progress">
-        <span id="currentTime" class="currentTime">00:00</span>
-        <div id="progressCircle" class="progress-circle"></div>
-      </div>
+      <div id="progress" class="progress"><div>
+      <div id="progressCircle" class="progress-circle"></div>
       <span id="totalTime" class="totalTime">00:00</span>
-<div class="songContainer">
-    <span id="nameSong" class="nameSong"></span>
-  </div>      
-    </div>
 
-
-  
-  </div>
-</div>
-  
-
+<div class="song-infos">
+                    <div class="image-container" >
+                        <img src="" alt="" id="cover"/>
+                    </div>
+                    <div class="song-description">
+                        <p class="title" id="nameSong">
+                            Watashitachi wa Sou Yatte Ikite Iku Jinshu na no
+                        </p>
+                        <p class="artist" id="artistSong">Masaru Yokoyama</p>
+                    </div>
+                </div>
+                
   <script src="play.js"></script>
   
 </body>
