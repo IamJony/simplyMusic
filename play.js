@@ -546,4 +546,3 @@ function playAudio(videoId) {
 // EVENTOS DE ESCUCHA CLICK Y ENTER PARA LA BUSQUEDA    
 searchButton.addEventListener('click', busqueda);
 searchInput.addEventListener('keydown', handleSearch);
-
