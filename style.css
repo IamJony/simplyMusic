@@ -298,16 +298,16 @@ left: -414px;
 }
 
 @media screen and (min-width: 210px) {
-  
+
 	.progress-bar .currentTime {
-		font-size: 18px;
+		font-size: 20px;
 	}	
 	.title, .artist {
 		display: none;
 
 	}
 	.player-container { 
-	    height: 10rem;
+	    height: 12rem;
 	}
 	.progress-bar {
 		width: 60%;
@@ -322,8 +322,57 @@ left: -414px;
 }
 
 .play-btn, .pause-btn {
-    font-size: 28px;
+    font-size: 32px;
 }
+table {
+    font-size: 30px; /* Ajusta el valor según el tamaño de texto deseado */
+  }
+
+.search-input {
+  border: none;
+  background-color: transparent;
+  padding: 8px;
+  font-size: 16px;
+  width: 300px;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.search-icon {
+  font-size: 40px
+}
+
+.search-button {
+  border: none;
+  background-color: transparent;
+  padding: 8px;
+  font-size: 20px;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+.search-filters {
+ border: none;
+  background-color: transparent;
+  padding: 8px;
+  font-size: 20px;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.search-input {
+  border: none;
+  background-color: transparent;
+  padding: 8px;
+  font-size: 44px;
+  width: 98%;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
 
 }
 
