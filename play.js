@@ -401,7 +401,7 @@ th2.innerHTML = "Autor"
 // FUNCION PARA REPRODUCIR LA MUSICA
 
 function playAudio(videoId) {
-  let apiUrl = `https://pipedapi.kavin.rocks/streams/${videoId}`;
+  let apiUrl = `https://piped-api.garudalinux.org/streams/${videoId}`;
   let apiPlaySong;
 
   function play(apiPlaySong) {
