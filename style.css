@@ -297,11 +297,22 @@ left: -414px;
     color: var(--secondary-color);
 }
 
-@media screen and (min-width: 210px) {
 
-	.progress-bar .currentTime {
-		font-size: 20px;
-	}	
+
+
+@media screen and (min-width: 500px) {
+
+.progress-bar .currentTime {
+  font-size: 30px;
+  position: absolute;
+  top: -8px;
+  height: 20px;
+  left: -92px;
+  margin-left: 6px;
+  right: auto;
+  text-align: center;
+}
+
 	.title, .artist {
 		display: none;
 
@@ -311,9 +322,10 @@ left: -414px;
 	}
 	.progress-bar {
 		width: 60%;
+		height: 12px;
 	}
 	.progress-bar .totalTime {
-    font-size: 20px;
+    font-size: 30px;
     margin-top: -6px;
     height: 20px;
     margin-left: 60%;
@@ -325,14 +337,14 @@ left: -414px;
     font-size: 36px;
 }
 table {
-    font-size: 30px; /* Ajusta el valor según el tamaño de texto deseado */
+    font-size: 32px; /* Ajusta el valor según el tamaño de texto deseado */
   }
 
 .search-input {
   border: none;
   background-color: transparent;
   padding: 8px;
-  font-size: 16px;
+  font-size: 33px;
   width: 300px;
   border-radius: 8px;
   outline: none;
@@ -347,7 +359,7 @@ table {
   border: none;
   background-color: transparent;
   padding: 8px;
-  font-size: 20px;
+  font-size: 33px;
   border-radius: 8px;
   outline: none;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
@@ -356,7 +368,7 @@ table {
  border: none;
   background-color: transparent;
   padding: 8px;
-  font-size: 20px;
+  font-size: 33px;
   border-radius: 8px;
   outline: none;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
@@ -366,15 +378,17 @@ table {
   border: none;
   background-color: transparent;
   padding: 8px;
-  font-size: 44px;
+  font-size: 33px;
   width: 98%;
   border-radius: 8px;
   outline: none;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
-
 }
+
+
+
 
 	@media screen and (min-width: 1000px) {
 		.progress-bar .currentTime {
@@ -459,7 +473,7 @@ table {
   margin-top: 0px;
 }
 table {
-    font-size: 16px; /* Ajusta el valor según el tamaño de texto deseado */
+    font-size: 17px; /* Ajusta el valor según el tamaño de texto deseado */
   }
 
 th, td {
