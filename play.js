@@ -38,6 +38,7 @@ pluto: 'https://api.watch.pluto.lat',
 yt: 'https://api.piped.yt', 
 frontendfriendly: 'https://pipedapi.frontendfriendly.xyz', 
 colinslegacy: 'https://pipedapi.colinslegacy.com', 
+coldforge: 'https://pipedapi.coldforge.xyz'
 };
 
 const serverFilters = document.getElementById('serverFilters');
@@ -52,6 +53,13 @@ serverFilters.addEventListener('change', function () {
 });
 
 // FUNCION PARA BUSCAR POR CANCIONES EN LA API POR DEFAULT &FILTER=MUSIC_SONG 
+
+let videoIds = [];
+let Id 
+let positionId;
+
+let intentos = 0
+
 function searchAPI() {
   const th1 = document.getElementById("th1");
   const th2 = document.getElementById("th2");
@@ -73,13 +81,22 @@ function searchAPI() {
     return formattedTime;
   }
 
+
+
   function searchSong(apiUrl) {
     fetch(apiUrl)
       .then(response => response.json())
+      
       .then(data => {
+		  
+		      if (data.items.length === 0) {
+                console.log('Los datos indican que la solicitud fue exitosa pero no hay datos esperados. Intentando de nuevo...');
+}
+		  
         const tableRows = data.items.map(item => {
           const urlParts = item.url.split('=');
           const videoId = urlParts[urlParts.length - 1];
+           videoIds.push(videoId);
           return `
             <tr class="trList" onmouseover="this.style.backgroundColor='#f0f0f0';" onmouseout="this.style.backgroundColor='#ffffff';" onclick="playAudio('${videoId}'); document.getElementById('nameSong').innerHTML = '${item.title}'; document.getElementById('artistSong').innerHTML = '${item.uploaderName}'">
               <td>${item.title}</td>
@@ -117,6 +134,7 @@ function searchAlbums() {
         const tableRows = data.items.map(item => {
           const urlParts = item.url.split('=');
           const videoId = urlParts[urlParts.length - 1];
+           videoIds.push(videoId);
           return `
             <tr class="trList" onmouseover="this.style.backgroundColor='#f0f0f0';" onmouseout="this.style.backgroundColor='#ffffff';" onclick="searchPlaylist('${videoId}')">
               <td>${item.name}</td>
@@ -145,6 +163,7 @@ function searchAlbums2(apiUrl) {
       const tableRows = data.items.map(item => {
         const urlParts = item.url.split('=');
         const videoId = urlParts[urlParts.length - 1];
+         videoIds.push(videoId);
         return `
           <tr class="trList" onmouseover="this.style.backgroundColor='#f0f0f0';" onmouseout="this.style.backgroundColor='#ffffff';" onclick="searchPlaylist('${videoId}')">
             <td>${item.name}</td>
@@ -188,6 +207,7 @@ function searchPlayli(apiUrl) {
       const tableRows = data.relatedStreams.map(item => {
         const urlParts = item.url.split('=');
         const videoId = urlParts[urlParts.length - 1];
+         videoIds.push(videoId);
         return `
        
        
@@ -232,6 +252,7 @@ function searchPlayli2(apiUrl) {
       const tableRows = data.items.map(item => {
         const urlParts = item.url.split('=');
         const videoId = urlParts[urlParts.length - 1];
+         videoIds.push(videoId);
         return `
           <tr class="trList" onclick="searchPlaylist('${videoId}')" onmouseover="this.style.backgroundColor='#f0f0f0';" onmouseout="this.style.backgroundColor='#ffffff';">
             <td>${item.name}</td>
@@ -248,22 +269,47 @@ function searchPlayli2(apiUrl) {
     });
 }
 
+
+
+
 // FUNCION PARA REPRODUCIR LA MUSICA
+
+
+
+
 
 function playAudio(videoId) {
   let apiUrl = `${serverUrl}/streams/${videoId}`;
-
+ Id = videoId
+ 
+ 
+ 
   function play(apiUrl) {
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
+
+
+		  
+		let positionIdd = videoIds.indexOf(Id);
+    positionId = positionIdd;
+    
         const audioStream = data.audioStreams[0].url;
         const thumbnailUrl = data.thumbnailUrl;
-
+        const name = data.title
+        const artist = data.uploader
+        
+document.getElementById('nameSong').innerHTML =  name
+document.getElementById('artistSong').innerHTML = artist
+        
         console.log(audioStream);
+        
         console.log(thumbnailUrl);
+        console.log(videoId);
         var cover = document.getElementById("cover");
         cover.src = thumbnailUrl;
+
+        
 
         // Lógica adicional para reproducir el audio utilizando los datos de audioStream
 
@@ -286,6 +332,9 @@ function playAudio(videoId) {
         progressBar.addEventListener("click", seekAudio);
         audio.addEventListener("timeupdate", updateProgressBar);
         audio.addEventListener("progress", updateBuffer);
+        
+        
+        audio.addEventListener('ended', playNextVideo);
 
         audio.addEventListener("timeupdate", function () {
           var currentTime = formatTime(audio.currentTime);
@@ -345,6 +394,22 @@ function playAudio(videoId) {
   play(apiUrl);
 }
 
+     
+     // Función para reproducir el siguiente video
+
+function playNextVideo() {
+    // Incrementar el índice para obtener el siguiente video
+    positionId++;
+    console.log(positionId)
+
+    // Verificar si el índice está dentro de los límites del array
+    if (positionId < videoIds.length) {
+        const nextVideoId = videoIds[positionId]; // Obtener el videoId del siguiente video
+        playAudio(nextVideoId); // Reproducir el siguiente video
+    } else {
+        console.log("No hay más videos para reproducir.");
+    }
+}
      
 
 
