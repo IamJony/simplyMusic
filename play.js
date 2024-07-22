@@ -38,7 +38,13 @@ pluto: 'https://api.watch.pluto.lat',
 yt: 'https://api.piped.yt', 
 frontendfriendly: 'https://pipedapi.frontendfriendly.xyz', 
 colinslegacy: 'https://pipedapi.colinslegacy.com', 
-coldforge: 'https://pipedapi.coldforge.xyz'
+coldforge: 'https://pipedapi.coldforge.xyz',
+darkness: 'https://pipedapi.darkness.services',
+schaun: 'https://schaunapi.ehwurscht.at',
+codespace: 'https://piped-api.codespace.cz',
+drgn: 'https://pipedapi.drgns.space',
+ggtyler: 'https://piapi.ggtyler.dev',
+reallyawesome: 'https://pipedapi.reallyaweso.me',
 };
 
 const serverFilters = document.getElementById('serverFilters');
@@ -109,6 +115,7 @@ function searchAPI() {
       })
       .catch(error => {
         console.log('Error:', error);
+        alert('La solicitud falló :(. Por favor, intenta con otro servidor.');
       });
   }
 
@@ -146,6 +153,7 @@ function searchAlbums() {
       })
       .catch(error => {
         console.log('Error:', error);
+        alert('La solicitud falló :(. Por favor, intenta con otro servidor.');
       });
   }
 
@@ -175,6 +183,7 @@ function searchAlbums2(apiUrl) {
     })
     .catch(error => {
       console.log('Error:', error);
+      alert('La solicitud falló :(. Por favor, intenta con otro servidor.');
     });
 }
 
@@ -225,6 +234,7 @@ function searchPlayli(apiUrl) {
     })
     .catch(error => {
       console.log('Error:', error);
+      alert('La solicitud falló :(. Por favor, intenta con otro servidor.');
       // Ocultar pantalla de carga en caso de error
     
     });
@@ -265,6 +275,7 @@ function searchPlayli2(apiUrl) {
     })
     .catch(error => {
       console.log('Error:', error);
+      alert('La solicitud falló :(. Por favor, intenta con otro servidor.');
       // Ocultar pantalla de carga en caso de error
     });
 }
@@ -286,9 +297,11 @@ function playAudio(videoId) {
  
   function play(apiUrl) {
     fetch(apiUrl)
+    
       .then(response => response.json())
       .then(data => {
 
+       
 
 		  
 		let positionIdd = videoIds.indexOf(Id);
@@ -388,6 +401,9 @@ document.getElementById('artistSong').innerHTML = artist
       })
       .catch(error => {
         console.log('Error al reproducir audio:', error);
+        alert('La solicitud falló :(. Por favor, intenta con otro servidor.');
+     
+        
       });
   }
 
