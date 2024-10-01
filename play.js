@@ -45,6 +45,7 @@ codespace: 'https://piped-api.codespace.cz',
 drgn: 'https://pipedapi.drgns.space',
 ggtyler: 'https://piapi.ggtyler.dev',
 reallyawesome: 'https://pipedapi.reallyaweso.me',
+privacyredirect: 'https://invidious.privacyredirect.com',
 };
 
 const serverFilters = document.getElementById('serverFilters');
